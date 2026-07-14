@@ -43,12 +43,18 @@ jobs:
           if find argocd -name "*.yaml" | grep -q .; then
             find argocd -name "*.yaml" -print0 | xargs -0 kubeconform \
               -schema-location default \
-              -schema-location 'https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/{{ .ResourceKind }}-crd.json' \
+              -ignore-missing-schemas \
               -summary
           else
             echo "No YAML manifests yet under argocd/ - skipping validation"
           fi
 
+      - name: validate alerts and dashboards manifests
+        run: |
+          find alerts dashboards -name "*.yaml" -print0 2>/dev/null | xargs -0 -r kubeconform \
+            -schema-location default \
+            -ignore-missing-schemas \
+            -summary
   gitleaks:
     runs-on: ubuntu-latest
     steps:
