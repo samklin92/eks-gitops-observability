@@ -4,7 +4,7 @@ Part of a 3-project observability and cost-governance platform:
 
 1. **eks-gitops-observability** (this repo) — GitOps-driven monitoring on EKS
 2. **multi-account-observability** — cross-account metrics aggregation (depends on this repo's Alertmanager)
-3. **cost-governance-platform** — trend anomaly detection + orphaned-resource scanning (depends on both above)
+3. **aws-finops-detective** — extends the existing AWS Cost Detective repo (renamed) with trend anomaly detection [already existed] + orphaned-resource scanning + cross-account scan via this repo's IAM role
 
 ## What this is
 
